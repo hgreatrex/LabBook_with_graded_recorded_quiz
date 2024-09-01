@@ -1,0 +1,80 @@
+---
+title: "2: Lab SetUp IMPORTANT"
+output: html_document
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+```
+
+```{r, include=FALSE}
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+library(shiny)
+library(data.table)
+
+# FUNCTIONS -----------------------------------------------
+# Get R version
+GetRLatest <- function(Website="https://cran.r-project.org/banner.shtml"){
+   require(rvest)
+   
+   #scrape the text from the website
+   RWebsite <- read_html("https://cran.r-project.org/banner.shtml") %>%
+            html_nodes("li") %>%
+            html_text()
+   
+   # get the line that includes latest release and get rid of the stuff after
+   RLatest <- base::strsplit(RWebsite[grep("latest release",
+                                     tolower(RWebsite))],"\n")[[1]][1]
+   return(RLatest)
+}
+
+```
+
+# Overview
+
+There are a number of software and internet accounts you will need. This tutorial takes you through them. DO NOT SKIP
+
+<br>
+
+#### ["I already have R and R studio on my laptop"]{.underline}
+
+-   IT IS VERY IMPORTANT THAT EVERYONE IS RUNNING THE MOST UP-TO-DATE VERSION OF R AND RStudio. <br>
+
+-   The easiest way to update is to re install. You will not lose access to old work. Follow these instructions verbatim.
+
+<br><br>
+
+
+# Test your knowledge
+
+Try this quiz!
+
+<br>
+
+```{r, echo=FALSE}
+# Source the Shiny app script
+source("app.R")
+
+# Run the Shiny app
+shinyApp(ui = ui, server = server)
+```
